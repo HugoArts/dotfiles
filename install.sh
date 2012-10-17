@@ -34,8 +34,8 @@ done
 
 # if we didn't move anything $olddir will be empty and we might as well delete it to reduce clutter
 if [ "$(ls -A $olddir)" ]; then
+    echo "Some old dotfiles were found and moved to $olddir"
+else
     echo "Nothing was moved. Deleting $olddir.."
     rmdir $olddir
-else
-    echo "Some old dotfiles were found and moved to $olddir"
 fi
