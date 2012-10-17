@@ -113,6 +113,13 @@ shopt -s cmdhist
 PS1='[\[\e[38;5;203m\]\! \[\e[0m\]${debian_chroot:+($debian_chroot)}\u@\h \W]\$ '
 PATH="$PATH:$HOME/bin"
 
+# try and update our dotfiles from git when we login
+if [ -d ~/dotfiles ]; then
+    cd ~/dotfiles
+    git pull origin master
+    cd -
+fi
+
 # code to set 256-color terminal in gnome-terminal.
 # From: http://vim.wikia.com/wiki/256_colors_in_vim
 if [ "$TERM" = "xterm" ] ; then
