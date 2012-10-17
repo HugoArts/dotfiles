@@ -3,6 +3,7 @@
     email = ha@theipcompany.nl
 
 [core]
+    editor = vim
     excludesfile = ~/.gitignore
 
 [color]
