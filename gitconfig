@@ -1,0 +1,9 @@
+[user]
+    name = Hugo Arts
+    email = ha@theipcompany.nl
+
+[core]
+    excludesfile = ~/.gitignore
+
+[color]
+    ui = true
