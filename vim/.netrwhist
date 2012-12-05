@@ -1,8 +1,2 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/hugo/wcs/AndroidAgentSDK/trunk/src/com/ipcompany/wcs/androidagentsdk/controller'
-let g:netrw_dirhist_2='/home/hugo/wcs/AndroidAgent'
-let g:netrw_dirhist_3='/home/hugo/wcs/SNMP_serving_agent/trunk/src/com/ipcompany/wcs/hmi2snmp/services/hmicommunication/database'
-let g:netrw_dirhist_4='/home/hugo/.vim'
-let g:netrw_dirhist_5='/home/hugo/wcs/SNMPAgent/trunk/build'
-let g:netrw_dirhist_6='/home/hugo/wcs/HostMessenger/trunk/build'
+let g:netrw_dirhist_cnt =0
