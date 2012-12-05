@@ -104,6 +104,7 @@ fi
 alias vi='vim'
 alias ack='ack-grep'
 alias browse-here='nautilus `pwd`'
+alias sl='sl -e'
 
 # history options
 HISTIGNORE="&:ls:[bf]g:exit"
