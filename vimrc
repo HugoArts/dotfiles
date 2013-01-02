@@ -7,6 +7,8 @@ colorscheme wombat256mod
 let python_highlight_all = 1
 " ack.vim setting
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+" autocommand for closetag.vim
+autocmd FileType html,xml,xsl source ~/.vim/scripts/closetag.vim
 
 syntax on
 filetype indent on
@@ -60,6 +62,9 @@ nnoremap <leader>v <C-^>
 
 " erase all trailing whitespace
 nnoremap <leader>w :%s/\s\+$//g<CR>``
+
+" surround selection in XML comment tags
+vnoremap <leader>t :s/.*/<!-- & -->/<CR>
 
 " :grep for word under cursor
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
