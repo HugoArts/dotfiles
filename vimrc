@@ -8,7 +8,7 @@ let python_highlight_all = 1
 " ack.vim setting
 let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 " autocommand for closetag.vim
-autocmd FileType html,xml,xsl source ~/.vim/scripts/closetag.vim
+autocmd FileType html,xml,xsl,ant source ~/.vim/scripts/closetag.vim
 
 syntax on
 filetype indent on
