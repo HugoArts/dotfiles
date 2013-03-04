@@ -24,6 +24,9 @@ set visualbell
 set nosmartindent
 set scrolloff=3
 
+set list
+set listchars=tab:↦\ ,trail:•
+
 " search settings
 set incsearch
 set ignorecase
