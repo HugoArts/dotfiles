@@ -36,6 +36,7 @@ alias vi='vim'
 alias ack='ack-grep'
 alias browse-here='nautilus `pwd`'
 alias sl='sl -e'
+alias less='less -F'
 
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
