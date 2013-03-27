@@ -7,6 +7,7 @@
 
 PS1='[\[\e[38;5;203m\]\! \[\e[0m\]${debian_chroot:+($debian_chroot)}\u@\h \W]\$ '
 PATH="$PATH:$HOME/bin"
+EDITOR="vim"
 
 # history options
 HISTCONTROL=ignoredups:ignorespace
