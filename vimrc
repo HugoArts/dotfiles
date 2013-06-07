@@ -8,7 +8,7 @@ set visualbell
 set nosmartindent
 set scrolloff=3
 set list listchars=tab:↦\ ,trail:•
-set incsearch ignorecase smartcase
+set incsearch hlsearch ignorecase smartcase
 set smarttab expandtab shiftwidth=4 tabstop=4
 set wildmenu wildmode=longest,list,full
 " statusline settings
@@ -59,6 +59,8 @@ nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<C-U>call <SID>GrepOperator(visualmode())<cr>
 " switch between number and relativenumber
 nnoremap <leader>s :call <SID>ToggleNumber()<cr>
+" quickly turn off search highlighting
+nnoremap <leader>/ :nohlsearch<cr>
 
 
 function! s:GrepOperator(type)
