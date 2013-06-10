@@ -5,7 +5,44 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-PS1='[\[\e[38;5;203m\]\! \[\e[0m\]${debian_chroot:+($debian_chroot)}\u@\h \W]\$ '
+
+function term_title() {
+    echo -ne "\033]0;$*\007"
+}
+
+function color() {
+    local reset='\e[0m'
+    declare -A colors=( [black]='\e[0;30m'
+                        [red]='\e[0;31m'
+                        [green]='\e[0;32m'
+                        [yellow]='\e[0;33m'
+                        [blue]='\e[0;34m'
+                        [magenta]='\e[035m;'
+                        [cyan]='\e[0;36m'
+                        [white]='\e[0;37m')
+
+    if [[ -z "$1" || -z "$2" ]]; then
+        # incorrect number of arguments
+        echo "usage: color STRING (COLORNAME | COLORINDEX)"
+        return 1
+    fi
+    if [[ -z "${colors[$2]}" ]]; then
+        # it's not in the 16-color hash table. Maybe an index?
+        if [[ $2 -gt 256 || $2  -lt 0 ]]; then
+            echo "ERROR: unknown color name and not a 256-color index: '$2'"
+            return 2
+        fi
+
+        echo -ne "\e[38;5;$2m$1${reset}"
+        return 0
+    fi
+
+    echo -ne "${colors[$2]}$1${reset}"
+}
+
+
+PS1="[$(color '\!' 203) \\u@\\h \\W]\\$ "
+PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
 PATH="$PATH:$HOME/bin"
 EDITOR="vim"
 
