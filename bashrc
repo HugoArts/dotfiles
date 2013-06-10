@@ -73,7 +73,7 @@ alias l='ls -CF'
 
 alias vi='vim'
 alias ack='ack-grep'
-alias browse-here='nautilus `pwd`'
+alias browse-here='nautilus `pwd` &'
 alias sl='sl -e'
 alias less='less -F'
 
