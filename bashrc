@@ -12,14 +12,14 @@ function term_title() {
 
 function color() {
     local reset='\e[0m'
-    declare -A colors=( [black]='\e[0;30m'
-                        [red]='\e[0;31m'
-                        [green]='\e[0;32m'
-                        [yellow]='\e[0;33m'
-                        [blue]='\e[0;34m'
-                        [magenta]='\e[035m;'
-                        [cyan]='\e[0;36m'
-                        [white]='\e[0;37m')
+    declare -A colors=([black]='\e[0;30m'
+                       [red]='\e[0;31m'
+                       [green]='\e[0;32m'
+                       [yellow]='\e[0;33m'
+                       [blue]='\e[0;34m'
+                       [magenta]='\e[035m;'
+                       [cyan]='\e[0;36m'
+                       [white]='\e[0;37m')
 
     if [[ -z "$1" || -z "$2" ]]; then
         # incorrect number of arguments
