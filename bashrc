@@ -41,7 +41,7 @@ function color() {
 }
 
 
-PS1="[$(color '\!' 203) \\u@\\h \\W]\\$ "
+PS1="[$(color '\u@\h' 203) \\W]\\$ "
 PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
 PATH="$PATH:$HOME/bin"
 EDITOR="vim"
