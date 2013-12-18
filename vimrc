@@ -28,10 +28,11 @@ filetype indent on
 filetype plugin on
 
 " colorscheme settings
+let g:gruvbox_italicize_comments = 0
 set background=dark
-colorscheme wombat256mod
+colorscheme gruvbox
 if exists("+colorcolumn")
-    highlight ColorColumn ctermbg=235
+    "highlight ColorColumn ctermbg=236
     set colorcolumn=80
 endif
 

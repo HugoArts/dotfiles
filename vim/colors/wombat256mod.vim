@@ -7,8 +7,6 @@
 " based on version by
 "   Danila Bespalov (danila.bespalov@gmail.com)
 
-set background=dark
-
 if version > 580
 	hi clear
 	if exists("syntax_on")
