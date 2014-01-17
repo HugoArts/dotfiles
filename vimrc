@@ -55,7 +55,7 @@ nnoremap <leader>v <C-^>
 " erase all trailing whitespace
 nnoremap <leader>w :%s/\s\+$//g<CR>``
 " surround selection in XML comment tags
-vnoremap <leader>t :s/.*/<!-- & -->/<CR>
+vnoremap <leader>x :s/.*/<!-- & -->/<CR>
 " :grep for word under cursor
 nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
 vnoremap <leader>g :<C-U>call <SID>GrepOperator(visualmode())<cr>
@@ -63,6 +63,9 @@ vnoremap <leader>g :<C-U>call <SID>GrepOperator(visualmode())<cr>
 nnoremap <leader>s :call <SID>ToggleNumber()<cr>
 " quickly turn off search highlighting
 nnoremap <leader>/ :nohlsearch<cr>
+" tagbar mappings
+nnoremap <silent> <leader>t :TagbarToggle<cr>
+nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
 
 
 function! s:GrepOperator(type)
