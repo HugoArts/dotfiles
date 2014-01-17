@@ -15,6 +15,9 @@ set wildmenu wildmode=longest,list,full
 " statusline settings
 set laststatus=2
 set statusline=[%n]\ %m%f\ %r%h%w%=\%5k\ %4l,%3v\ %3p%%\ %4LL\ [type=%Y]
+" vim-airline font settings
+let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1
 
 " python specific syntax setting
 let python_highlight_all = 1
