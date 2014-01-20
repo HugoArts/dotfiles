@@ -60,9 +60,9 @@ endif
 " set next/previous tab commands to switch buffers instead
 nnoremap gt :bn<CR>
 nnoremap gT :bp<CR>
-nnoremap <F5> :buffers<CR>:buffer<Space>
-" maybe this will help with arm pains I'm having?
 inoremap jj <ESC>
+" quickly turn off search highlighting
+nnoremap <leader>/ :nohlsearch<cr>
 " insert the current date in nice format
 inoremap <leader>d <C-r>=strftime('%d %B %Y')<CR>
 " copy entire buffer to system clipboard and jump back to original position
@@ -74,27 +74,7 @@ nnoremap <leader>w :%s/\s\+$//g<CR>``
 " surround selection in XML comment tags
 vnoremap <leader>x :s/.*/<!-- & -->/<CR>
 " :grep for word under cursor
-nnoremap <leader>g :set operatorfunc=<SID>GrepOperator<cr>g@
-vnoremap <leader>g :<C-U>call <SID>GrepOperator(visualmode())<cr>
-" switch between number and relativenumber
 nnoremap <leader>s :call <SID>ToggleNumber()<cr>
-" quickly turn off search highlighting
-nnoremap <leader>/ :nohlsearch<cr>
-
-
-function! s:GrepOperator(type)
-    let saved_unnamed_register = @@
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
-    silent execute "grep! -R " . shellescape(@@) . " ."
-    copen
-    let @@ = saved_unnamed_register
-endfunction
 
 function! s:ToggleNumber()
     if &number
