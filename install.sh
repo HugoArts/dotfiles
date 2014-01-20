@@ -12,6 +12,9 @@ files="bashrc vimrc vim inputrc ackrc gitconfig gitignore"  # list of files/fold
 
 ##########
 
+# get vundle
+git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
+
 # create dotfiles_old in homedir
 mkdir -p $olddir
 
@@ -39,3 +42,5 @@ else
     echo "Nothing was moved. Deleting $olddir.."
     rmdir $olddir
 fi
+
+echo "To finish installing your vim plugins, run :BundleInstall in vim!"

@@ -1,5 +1,32 @@
-call pathogen#infect()
-call pathogen#helptags()
+" vundle stuff
+let mapleader=","
+filetype off
+set rtp+=~/.vim/bundle/vundle
+call vundle#rc()
+
+Bundle "gmarik/vundle"
+Bundle "tsaleh/vim-matchit"
+Bundle "tpope/vim-ragtag.git"
+Bundle "tpope/vim-repeat.git"
+Bundle "tpope/vim-surround.git"
+
+Bundle "majutsushi/tagbar.git"
+    nnoremap <silent> <leader>t :TagbarToggle<cr>
+    nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
+
+Bundle "mileszs/ack.vim.git"
+    let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
+Bundle "scrooloose/syntastic.git"
+    let g:syntastic_python_checkers = ["python", "pyflakes", "pep8"]
+
+Bundle "bling/vim-airline"
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline_detect_modified = 0
+
+syntax on
+filetype plugin indent on
 
 set hidden
 set showcmd showmatch
@@ -12,24 +39,14 @@ set list listchars=tab:↦\ ,trail:•
 set incsearch hlsearch ignorecase smartcase
 set smarttab expandtab shiftwidth=4 tabstop=4
 set wildmenu wildmode=longest,list,full
-" statusline settings
 set laststatus=2
 set statusline=[%n]\ %m%f\ %r%h%w%=\%5k\ %4l,%3v\ %3p%%\ %4LL\ [type=%Y]
-" vim-airline font settings
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1
 
 " python specific syntax setting
 let python_highlight_all = 1
-let g:syntastic_python_checkers = ["python", "pyflakes", "pep8"]
-" ack.vim setting
-let g:ackprg="ack-grep -H --nocolor --nogroup --column"
+
 " autocommand for closetag.vim
 autocmd FileType html,xml,xsl,ant source ~/.vim/scripts/closetag.vim
-
-syntax on
-filetype indent on
-filetype plugin on
 
 " colorscheme settings
 let g:gruvbox_italicize_comments = 0
@@ -39,10 +56,6 @@ if exists("+colorcolumn")
     "highlight ColorColumn ctermbg=236
     set colorcolumn=80
 endif
-
-
-"leader key. Insert mappings below
-let mapleader=","
 
 " set next/previous tab commands to switch buffers instead
 nnoremap gt :bn<CR>
@@ -67,9 +80,6 @@ vnoremap <leader>g :<C-U>call <SID>GrepOperator(visualmode())<cr>
 nnoremap <leader>s :call <SID>ToggleNumber()<cr>
 " quickly turn off search highlighting
 nnoremap <leader>/ :nohlsearch<cr>
-" tagbar mappings
-nnoremap <silent> <leader>t :TagbarToggle<cr>
-nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
 
 
 function! s:GrepOperator(type)
