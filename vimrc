@@ -10,6 +10,9 @@ Bundle "tpope/vim-ragtag.git"
 Bundle "tpope/vim-repeat.git"
 Bundle "tpope/vim-surround.git"
 
+Bundle "kien/ctrlp.vim.git"
+    let g:ctrlp_root_markers = [".ctrlp_root"]
+
 Bundle "majutsushi/tagbar.git"
     nnoremap <silent> <leader>t :TagbarToggle<cr>
     nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
@@ -65,7 +68,7 @@ inoremap jj <ESC>
 nnoremap <leader>/ :nohlsearch<cr>
 " insert the current date in nice format
 inoremap <leader>d <C-r>=strftime('%d %B %Y')<CR>
-" copy entire buffer to system clipboard and jump back to original position
+" copy entire buffer to system clipboard
 nnoremap <leader>c :%y +<cr>
 " quickly switch to previous buffer
 nnoremap <leader>v <C-^>
@@ -73,7 +76,7 @@ nnoremap <leader>v <C-^>
 nnoremap <leader>w :%s/\s\+$//g<CR>``
 " surround selection in XML comment tags
 vnoremap <leader>x :s/.*/<!-- & -->/<CR>
-" :grep for word under cursor
+" switch between number and relativenumber
 nnoremap <leader>s :call <SID>ToggleNumber()<cr>
 
 function! s:ToggleNumber()
