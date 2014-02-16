@@ -40,8 +40,16 @@ function color() {
     echo -ne "${colors[$2]}$1${reset}"
 }
 
+function is_git_dirty {
+  git diff --no-ext-diff --quiet --exit-code &> /dev/null || echo "*"
+}
 
-PS1="[$(color '\u@\h' 203) \\W]\\$ "
+function show_git_branch {
+  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' \
+                                           -e "s/* \(.*\)/(\1$(is_git_dirty))/"
+}
+
+PS1="[$(color '\u@\h' 203) \\W\$(show_git_branch)]\\$ "
 PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
 PATH="$PATH:$HOME/bin"
 EDITOR="vim"
