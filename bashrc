@@ -49,16 +49,16 @@ function show_git_branch {
                                            -e "s/* \(.*\)/(\1$(is_git_dirty))/"
 }
 
-PS1="[$(color '\u@\h' 203) \\W\$(show_git_branch)]\\$ "
-PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
-PATH="$PATH:$HOME/bin"
-EDITOR="vim"
+export PS1="[$(color '\u@\h' 203) \\W\$(show_git_branch)]\\$ "
+export PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
+export PATH="$PATH:$HOME/bin"
+export EDITOR="vim"
 
 # history options
-HISTCONTROL=ignoredups:ignorespace
-HISTIGNORE="&:ls:[bf]g:exit"
-HISTSIZE=1000
-HISTFILESIZE=2000
+export HISTCONTROL=ignoredups:ignorespace
+export HISTIGNORE="&:ls:[bf]g:exit"
+export HISTSIZE=1000
+export HISTFILESIZE=2000
 
 shopt -s histappend
 shopt -s cmdhist
