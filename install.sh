@@ -13,6 +13,7 @@ files="bashrc vimrc vim inputrc ackrc gitconfig gitignore"  # list of files/fold
 ##########
 
 # get vundle
+mkdir -p ~/dotfiles/vim/bundle
 git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
 
 # create dotfiles_old in homedir
