@@ -53,6 +53,14 @@ function show_git_branch {
                                              -e "s/* \(.*\)/$(git_dirty_color "(⎇\1)")/"
 }
 
+if [[ -d ~/python/envs/master ]]; then
+    # get virtualenvwrapper's ass in here
+    export WORKON_HOME=~/python/envs
+    export PROJECT_HOME=~/python
+    export VIRTUALENVWRAPPER_PYTHON=~/python/envs/master/bin/python
+    source ~/python/envs/master/bin/virtualenvwrapper.sh
+fi
+
 export PS1="[$(color '\u@\h' 203) \\W\$(show_git_branch)]\\$ "
 export PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
 export PATH="$PATH:$HOME/bin"
