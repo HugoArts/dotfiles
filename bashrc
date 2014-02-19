@@ -5,7 +5,6 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-
 function term_title() {
     echo -ne "\033]0;$*\007"
 }
@@ -40,13 +39,18 @@ function color() {
     echo -ne "${colors[$2]}$1${reset}"
 }
 
-function is_git_dirty {
-  git diff --no-ext-diff --quiet --exit-code &> /dev/null || echo "*"
+function git_dirty_color {
+    if git diff --no-ext-diff --quiet &> /dev/null; then
+        # no changes
+        echo $(color $1 'cyan')
+    else
+        echo $(color $1 'yellow')
+    fi
 }
 
 function show_git_branch {
-  git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' \
-                                           -e "s/* \(.*\)/(\1$(is_git_dirty))/"
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' \
+                                             -e "s/* \(.*\)/$(git_dirty_color "(⎇\1)")/"
 }
 
 export PS1="[$(color '\u@\h' 203) \\W\$(show_git_branch)]\\$ "
