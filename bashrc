@@ -49,8 +49,9 @@ function git_dirty_color {
 }
 
 function show_git_branch {
+    sub=$(git_dirty_color '(⎇ \1)')
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' \
-                                             -e "s/* \(.*\)/$(git_dirty_color "(⎇\1)")/"
+                                             -e "s/* \(.*\)/$sub/"
 }
 
 if [[ -d ~/python/envs/master ]]; then
@@ -61,7 +62,7 @@ if [[ -d ~/python/envs/master ]]; then
     source ~/python/envs/master/bin/virtualenvwrapper.sh
 fi
 
-export PS1="[$(color '\u@\h' 203) \\W\$(show_git_branch)]\\$ "
+export PS1="[$(color '\u@\h' 203) \\W \$(show_git_branch)]\\$ "
 export PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
 export PATH="$PATH:$HOME/bin"
 export EDITOR="vim"
