@@ -40,11 +40,10 @@ function color() {
 }
 
 function git_dirty_color {
-    if git diff --no-ext-diff --quiet &> /dev/null; then
-        # no changes
-        echo $(color "$1" 'cyan')
-    else
-        echo $(color "$1" 'yellow')
+    opts="--no-ext-diff --quiet"
+    if git diff $opts 2>/dev/null && git diff --cached $opts 2>/dev/null
+        then echo $(color "$1" 'cyan')
+        else echo $(color "$1" 'yellow')
     fi
 }
 
