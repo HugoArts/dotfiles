@@ -42,9 +42,9 @@ function color() {
 function git_dirty_color {
     if git diff --no-ext-diff --quiet &> /dev/null; then
         # no changes
-        echo $(color $1 'cyan')
+        echo $(color "$1" 'cyan')
     else
-        echo $(color $1 'yellow')
+        echo $(color "$1" 'yellow')
     fi
 }
 
