@@ -41,9 +41,14 @@ term_title() {
 }
 
 term_prompt() {
+    term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"
     dirty=$(git_dirtycolor)
     export PS1="[\[${colors[203]}\]\u@\h\[$creset\] \W\[${ncolors[$dirty]}\]$(git_showbranch)\[$creset\]]\$ "
-    term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"
+
+    # add virtualenv info if present
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        export PS1="($(basename "$VIRTUAL_ENV"))$PS1"
+    fi
 }
 
 if [[ -d ~/python/envs/master ]]; then
