@@ -5,52 +5,45 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
-function term_title() {
+# enable programmable completion features
+if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
+    . /etc/bash_completion
+fi
+
+# color reset
+creset='\e[0m'
+# 16 named colors
+declare -A ncolors=([black]='\e[0;30m' [red]='\e[0;31m'
+                    [green]='\e[0;32m' [yellow]='\e[0;33m'
+                    [blue]='\e[0;34m'  [magenta]='\e[035m;'
+                    [cyan]='\e[0;36m'  [white]='\e[0;37m')
+# 256 colors
+for i in $(seq 0 255); do
+    colors[$i]="\e[38;5;${i}m"
+done
+
+
+git_dirtycolor() {
+    opts="--no-ext-diff --quiet"
+    if git diff $opts 2>/dev/null && git diff --cached $opts 2>/dev/null
+        then echo 'cyan'
+        else echo 'yellow'
+    fi
+}
+
+git_showbranch() {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' \
+                                             -e "s/* \(.*\)/ (\1)/"
+}
+
+term_title() {
     echo -ne "\033]0;$*\007"
 }
 
-function color() {
-    local reset='\e[0m'
-    declare -A colors=([black]='\e[0;30m'
-                       [red]='\e[0;31m'
-                       [green]='\e[0;32m'
-                       [yellow]='\e[0;33m'
-                       [blue]='\e[0;34m'
-                       [magenta]='\e[035m;'
-                       [cyan]='\e[0;36m'
-                       [white]='\e[0;37m')
-
-    if [[ -z "$1" || -z "$2" ]]; then
-        # incorrect number of arguments
-        echo "usage: color STRING (COLORNAME | COLORINDEX)"
-        return 1
-    fi
-    if [[ -z "${colors[$2]}" ]]; then
-        # it's not in the 16-color hash table. Maybe an index?
-        if [[ $2 -gt 256 || $2  -lt 0 ]]; then
-            echo "ERROR: unknown color name and not a 256-color index: '$2'"
-            return 2
-        fi
-
-        echo -ne "\e[38;5;$2m$1${reset}"
-        return 0
-    fi
-
-    echo -ne "${colors[$2]}$1${reset}"
-}
-
-function git_dirty_color {
-    opts="--no-ext-diff --quiet"
-    if git diff $opts 2>/dev/null && git diff --cached $opts 2>/dev/null
-        then echo $(color "$1" 'cyan')
-        else echo $(color "$1" 'yellow')
-    fi
-}
-
-function show_git_branch {
-    sub=$(git_dirty_color ' (⎇ \1)')
-    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' \
-                                             -e "s/* \(.*\)/$sub/"
+term_prompt() {
+    dirty=$(git_dirtycolor)
+    export PS1="[\[${colors[203]}\]\u@\h\[$creset\] \W\[${ncolors[$dirty]}\]$(git_showbranch)\[$creset\]]\$ "
+    term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"
 }
 
 if [[ -d ~/python/envs/master ]]; then
@@ -61,8 +54,7 @@ if [[ -d ~/python/envs/master ]]; then
     source ~/python/envs/master/bin/virtualenvwrapper.sh
 fi
 
-export PS1="[$(color '\u@\h' 203) \\W\$(show_git_branch)]\\$ "
-export PROMPT_COMMAND='term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"'
+export PROMPT_COMMAND='term_prompt'
 export PATH="$PATH:$HOME/bin"
 export EDITOR="vim"
 
@@ -85,7 +77,7 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
+# some ls aliases
 alias ls='ls --color=auto --group-directories-first'
 alias ll='ls -alF'
 alias la='ls -A'
@@ -96,13 +88,6 @@ alias ack='ack-grep'
 alias browse-here='nautilus `pwd` &'
 alias sl='sl -e'
 alias less='less -F'
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
 
 # code to set 256-color terminal in gnome-terminal.
 # From: http://vim.wikia.com/wiki/256_colors_in_vim
