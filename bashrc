@@ -36,14 +36,24 @@ git_showbranch() {
                                              -e "s/* \(.*\)/ (\1)/"
 }
 
+set_dollar_color() {
+    # color '$' based on exit status
+    if [[ "$1" -eq 0 ]]; then
+        dollar="\$"
+    else
+        dollar="${ncolors["red"]}\$$creset"
+    fi
+}
+
 term_title() {
     echo -ne "\033]0;$*\007"
 }
 
 term_prompt() {
+    set_dollar_color $?
     term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"
     dirty=$(git_dirtycolor)
-    export PS1="[\[${colors[203]}\]\u@\h\[$creset\] \W\[${ncolors[$dirty]}\]$(git_showbranch)\[$creset\]]\$ "
+    export PS1="[\[${colors[203]}\]\u@\h\[$creset\] \W\[${ncolors[$dirty]}\]$(git_showbranch)\[$creset\]]$dollar "
 
     # add virtualenv info if present
     if [[ -n "$VIRTUAL_ENV" ]]; then
