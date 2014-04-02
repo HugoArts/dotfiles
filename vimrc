@@ -78,7 +78,7 @@ nnoremap <leader>/ :nohlsearch<cr>
 " insert the current date in nice format
 inoremap <leader>d <C-r>=strftime('%d %B %Y')<CR>
 " copy entire buffer to system clipboard
-nnoremap <leader>c :%y +<cr>
+nnoremap <leader>c :%y "+<cr>
 " quickly switch to previous buffer
 nnoremap <leader>v <C-^>
 " erase all trailing whitespace

@@ -99,10 +99,12 @@ alias la='ls -A'
 alias l='ls -CF'
 
 alias vi='vim'
-alias ack='ack-grep'
 alias browse-here='nautilus `pwd` &'
 alias sl='sl -e'
 alias less='less -F'
+if $(which ack-grep &> /dev/null); then
+    alias ack='ack-grep'
+fi
 
 # code to set 256-color terminal in gnome-terminal.
 # From: http://vim.wikia.com/wiki/256_colors_in_vim
