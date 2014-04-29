@@ -9,6 +9,10 @@ Bundle "tsaleh/vim-matchit"
 Bundle "tpope/vim-ragtag.git"
 Bundle "tpope/vim-repeat.git"
 Bundle "tpope/vim-surround.git"
+Bundle "tpope/vim-markdown.git"
+Bundle "tpope/vim-haml"
+Bundle "elzr/vim-json.git"
+Bundle "pangloss/vim-javascript"
 
 Bundle "kien/ctrlp.vim.git"
     let g:ctrlp_root_markers = [".ctrlp_root"]
