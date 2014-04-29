@@ -14,7 +14,7 @@ files="bashrc vimrc vim inputrc ackrc gitconfig gitignore tmux.conf"  # list of 
 
 # get vundle
 mkdir -p ~/dotfiles/vim/bundle
-git clone https://github.com/gmarik/vundle.git ~/dotfiles/vim/bundle/vundle
+git clone https://github.com/gmarik/Vundle.vim.git ~/dotfiles/vim/bundle/Vundle.vim
 
 # create dotfiles_old in homedir
 mkdir -p $olddir
@@ -44,4 +44,5 @@ else
     rmdir $olddir
 fi
 
-echo "To finish installing your vim plugins, run :BundleInstall in vim!"
+echo "Installing Vim plugins..."
+vim +PluginInstall +qall

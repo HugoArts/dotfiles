@@ -1,33 +1,33 @@
 " vundle stuff
 let mapleader=","
 filetype off
-set rtp+=~/.vim/bundle/vundle
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
-Bundle "gmarik/vundle"
-Bundle "tsaleh/vim-matchit"
-Bundle "tpope/vim-ragtag.git"
-Bundle "tpope/vim-repeat.git"
-Bundle "tpope/vim-surround.git"
-Bundle "tpope/vim-markdown.git"
-Bundle "tpope/vim-haml"
-Bundle "elzr/vim-json.git"
-Bundle "pangloss/vim-javascript"
+Plugin 'gmarik/Vundle.vim.git'
+Plugin 'tmhedberg/matchit.git'
+Plugin 'tpope/vim-ragtag.git'
+Plugin 'tpope/vim-repeat.git'
+Plugin 'tpope/vim-surround.git'
+Plugin 'tpope/vim-markdown.git'
+Plugin 'tpope/vim-haml'
+Plugin 'elzr/vim-json.git'
+Plugin 'pangloss/vim-javascript'
 
-Bundle "kien/ctrlp.vim.git"
+Plugin 'kien/ctrlp.vim.git'
     let g:ctrlp_root_markers = [".ctrlp_root"]
 
-Bundle "majutsushi/tagbar.git"
+Plugin 'majutsushi/tagbar.git'
     nnoremap <silent> <leader>t :TagbarToggle<cr>
     nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
 
-Bundle "mileszs/ack.vim.git"
+Plugin 'mileszs/ack.vim.git'
     let g:ackprg="ack-grep -H --nocolor --nogroup --column"
 
-Bundle "scrooloose/syntastic.git"
+Plugin 'scrooloose/syntastic.git'
     let g:syntastic_python_checkers = ["python", "pyflakes", "pep8"]
 
-Bundle "bling/vim-airline"
+Plugin 'bling/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline_detect_modified = 0
     if !exists('g:airline_symbols')
@@ -41,6 +41,7 @@ Bundle "bling/vim-airline"
     let g:airline_symbols.paste = 'Þ'
     let g:airline_symbols.whitespace = 'Ξ'
 
+call vundle#end()
 syntax on
 filetype plugin indent on
 
