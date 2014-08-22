@@ -13,6 +13,7 @@ Plugin 'tpope/vim-markdown.git'
 Plugin 'tpope/vim-haml'
 Plugin 'elzr/vim-json.git'
 Plugin 'pangloss/vim-javascript'
+Plugin 'othree/html5.vim.git'
 
 Plugin 'kien/ctrlp.vim.git'
     let g:ctrlp_root_markers = [".ctrlp_root"]
