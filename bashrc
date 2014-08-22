@@ -61,12 +61,22 @@ term_prompt() {
     fi
 }
 
-if [[ -d ~/python/envs/master ]]; then
+if [[ -d ~/python/envs ]]; then
     # get virtualenvwrapper's ass in here
     export WORKON_HOME=~/python/envs
     export PROJECT_HOME=~/python
-    export VIRTUALENVWRAPPER_PYTHON=~/python/envs/master/bin/python
-    source ~/python/envs/master/bin/virtualenvwrapper.sh
+
+    if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+        # oooh, a global install. cool
+        source /usr/bin/virtualenvwrapper.sh
+    elif [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
+        # really dude, you gotta put your shit in /usr/local? fine, whatever
+        source /usr/local/bin/virtualenvwrapper.sh
+    elif [[ -f ~/python/envs/master ]]; then
+        # a locally bootstrapped virtualenv? no problem
+        export VIRTUALENVWRAPPER_PYTHON=~/python/envs/master/bin/python
+        source ~/python/envs/master/bin/python
+    fi
 fi
 
 export PROMPT_COMMAND='term_prompt'
