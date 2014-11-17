@@ -95,9 +95,9 @@ vnoremap <leader>x :s/.*/<!-- & -->/<CR>
 nnoremap <leader>s :call <SID>ToggleNumber()<cr>
 
 function! s:ToggleNumber()
-    if &number
-        set relativenumber
+    if &relativenumber
+        set norelativenumber
     else
-        set number
+        set relativenumber
     endif
 endfunction
