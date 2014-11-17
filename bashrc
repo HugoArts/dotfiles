@@ -72,10 +72,10 @@ if [[ -d ~/python/envs ]]; then
     elif [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
         # really dude, you gotta put your shit in /usr/local? fine, whatever
         source /usr/local/bin/virtualenvwrapper.sh
-    elif [[ -f ~/python/envs/master ]]; then
+    elif [[ -f ~/python/envs/master/bin/virtualenvwrapper.sh ]]; then
         # a locally bootstrapped virtualenv? no problem
         export VIRTUALENVWRAPPER_PYTHON=~/python/envs/master/bin/python
-        source ~/python/envs/master/bin/python
+        source ~/python/envs/master/bin/virtualenvwrapper.sh
     fi
 fi
 
