@@ -53,7 +53,7 @@ term_prompt() {
     set_dollar_color $?
     term_title "${USER}@$(hostname): ${PWD/#${HOME}/~}"
     dirty=$(git_dirtycolor)
-    export PS1="[\[${colors[203]}\]\u@\h\[$creset\] \W\[${ncolors[$dirty]}\]$(git_showbranch)\[$creset\]]$dollar "
+    export PS1="[\[${colors[1]}\]\u@\h\[$creset\] \W\[${ncolors[$dirty]}\]$(git_showbranch)\[$creset\]]$dollar "
 
     # add virtualenv info if present
     if [[ -n "$VIRTUAL_ENV" ]]; then
@@ -147,3 +147,6 @@ if [ "$TERM" = "xterm" ] ; then
         esac
     fi
 fi
+
+BASE16_COLORS="$HOME/dotfiles/base16-default.dark.sh"
+[[ -s $BASE16_COLORS ]] && source $BASE16_COLORS

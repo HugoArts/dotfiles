@@ -17,7 +17,7 @@ Plugin 'othree/html5.vim.git'
 Plugin 'mitsuhiko/vim-jinja.git'
 Plugin 'wting/rust.vim.git'
 Plugin 'cespare/vim-toml.git'
-Plugin 'junegunn/seoul256.vim'
+Plugin 'chriskempson/base16-vim.git'
 
 Plugin 'kien/ctrlp.vim.git'
     let g:ctrlp_root_markers = [".ctrlp_root"]
@@ -71,9 +71,11 @@ let python_highlight_all = 1
 autocmd FileType html,xml,xsl,ant source ~/.vim/scripts/closetag.vim
 
 " colorscheme settings
-let g:gruvbox_italicize_comments = 0
 set background=dark
-colorscheme gruvbox
+let base16colorspace=256
+colorscheme base16-default
+"let g:gruvbox_italicize_comments = 0
+"colorscheme gruvbox
 if exists("+colorcolumn")
     "highlight ColorColumn ctermbg=236
     set colorcolumn=80
