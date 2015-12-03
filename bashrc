@@ -61,23 +61,26 @@ term_prompt() {
     fi
 }
 
-if [[ -d ~/python/envs ]]; then
-    # get virtualenvwrapper's ass in here
-    export WORKON_HOME=~/python/envs
-    export PROJECT_HOME=~/python
+init_virtualenv() {
+    if [[ -d ~/python/envs ]]; then
+        # get virtualenvwrapper's ass in here
+        export VIRTUALENVWRAPPER_PYTHON="$1"
+        export WORKON_HOME=~/python/envs
+        export PROJECT_HOME=~/python
 
-    if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
-        # oooh, a global install. cool
-        source /usr/bin/virtualenvwrapper.sh
-    elif [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
-        # really dude, you gotta put your shit in /usr/local? fine, whatever
-        source /usr/local/bin/virtualenvwrapper.sh
-    elif [[ -f ~/python/envs/master/bin/virtualenvwrapper.sh ]]; then
-        # a locally bootstrapped virtualenv? no problem
-        export VIRTUALENVWRAPPER_PYTHON=~/python/envs/master/bin/python
-        source ~/python/envs/master/bin/virtualenvwrapper.sh
+        if [[ -f /usr/bin/virtualenvwrapper.sh ]]; then
+            # oooh, a global install. cool
+            source /usr/bin/virtualenvwrapper.sh
+        elif [[ -f /usr/local/bin/virtualenvwrapper.sh ]]; then
+            # really dude, you gotta put your shit in /usr/local? fine, whatever
+            source /usr/local/bin/virtualenvwrapper.sh
+        elif [[ -f ~/python/envs/master/bin/virtualenvwrapper.sh ]]; then
+            # a locally bootstrapped virtualenv? no problem
+            export VIRTUALENVWRAPPER_PYTHON=~/python/envs/master/bin/python
+            source ~/python/envs/master/bin/virtualenvwrapper.sh
+        fi
     fi
-fi
+}
 
 export PROMPT_COMMAND='term_prompt'
 export PATH="$PATH:$HOME/bin"
@@ -93,20 +96,27 @@ shopt -s histappend
 shopt -s cmdhist
 shopt -s checkwinsize
 
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    eval $(dircolors -b)
-    alias ls='ls --color=auto'
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
+#init_virtualenv `which python`
+init_virtualenv `which python3`
+alias mkvirtualenv="mkvirtualenv --python=/usr/local/bin/python3"
+alias mkproject="mkproject --python=/usr/local/bin/python3"
 
 # some ls aliases
-alias ls='ls --color=auto --group-directories-first'
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
+if [ `uname -s` != "Darwin" ]; then
+    # enable color support of ls and also add handy aliases
+    if [ -x /usr/bin/dircolors ]; then
+        eval $(dircolors -b)
+        alias ls='ls --color=auto'
+        alias grep='grep --color=auto'
+        alias fgrep='fgrep --color=auto'
+        alias egrep='egrep --color=auto'
+    fi
+
+    alias ls='ls --color=auto --group-directories-first'
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
+fi
 
 alias vi='vim'
 alias browse-here='nautilus `pwd` &'
@@ -147,6 +157,3 @@ if [ "$TERM" = "xterm" ] ; then
         esac
     fi
 fi
-
-BASE16_COLORS="$HOME/dotfiles/base16-default.dark.sh"
-[[ -s $BASE16_COLORS ]] && source $BASE16_COLORS
