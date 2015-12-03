@@ -12,3 +12,5 @@
     default = matching
 [alias]
     graph = log --graph --branches --decorate
+    cached = diff --cached
+    s = status --short

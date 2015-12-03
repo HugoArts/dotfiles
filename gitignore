@@ -1,2 +1,11 @@
 .*.swp
 .*.swo
+.tags
+.gitattributes
+
+# python crap
+*.pyc
+__pycache__/*
+
+# Mac OS bullshit
+.DS_Store
