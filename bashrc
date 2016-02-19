@@ -118,6 +118,10 @@ if [ `uname -s` != "Darwin" ]; then
     alias l='ls -CF'
 fi
 
+if [ `uname -s` = "Darwin" ]; then
+    export PATH="$PATH:/opt/chefdk/bin"
+fi
+
 alias vi='vim'
 alias browse-here='nautilus `pwd` &'
 alias sl='sl -e'
