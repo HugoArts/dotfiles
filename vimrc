@@ -52,6 +52,10 @@ Plugin 'scrooloose/syntastic.git'
 Plugin 'bling/vim-airline'
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#buffer_idx_mode = 1
+    for i in range(1, 9)
+        execute "nmap <leader>" . i . " <Plug>AirlineSelectTab" . i
+    endfor
+
     let g:airline_detect_modified = 0
     if !exists('g:airline_symbols')
         let g:airline_symbols = {}
@@ -123,7 +127,7 @@ nnoremap <leader>s :call <SID>ToggleNumber()<cr>
 
 function! s:ToggleNumber()
     if &relativenumber
-        set norelativenumber
+        set number
     else
         set relativenumber
     endif
