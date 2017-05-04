@@ -41,7 +41,7 @@ Plugin 'majutsushi/tagbar.git'
     nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
 
 Plugin 'rking/ag.vim.git'
-    let g:agprg="ag --vimgrep"
+    let g:ag_prg="ag --vimgrep"
 
 Plugin 'scrooloose/nerdtree.git'
     nnoremap <leader>f :NERDTreeToggle<CR>
@@ -77,7 +77,7 @@ filetype plugin indent on
 
 set hidden
 set showcmd showmatch
-set number
+set number relativenumber
 set cursorline
 set visualbell
 set nosmartindent
@@ -89,6 +89,7 @@ set wildmenu wildmode=longest,list,full
 set laststatus=2
 set statusline=[%n]\ %m%f\ %r%h%w%=\%5k\ %4l,%3v\ %3p%%\ %4LL\ [type=%Y]
 set tags=./.tags;
+set backspace=2
 
 " python specific syntax setting
 let python_highlight_all = 1
@@ -98,7 +99,8 @@ autocmd FileType html,xml,xsl,ant source ~/.vim/scripts/closetag.vim
 
 " colorscheme settings
 set background=dark
-colorscheme base16-default
+let base16colorspace=256
+colorscheme base16-default-dark
 "let g:gruvbox_italicize_comments = 0
 "colorscheme gruvbox
 if exists("+colorcolumn")
