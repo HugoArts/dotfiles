@@ -162,7 +162,11 @@ if [ `uname -s` != "Darwin" ]; then
 fi
 
 if [ `uname -s` = "Darwin" ]; then
-    export PATH="$PATH:/opt/chefdk/bin"
+    export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin:/opt/chefdk/bin"
+    export LC_ALL=en_US.UTF-8
+    export LANG=en_US.UTF-8
+    alias ag="echo use rg!!!"
+    source "$HOME/dotfiles/base16-default.dark.sh"
 fi
 
 alias vi='vim'
