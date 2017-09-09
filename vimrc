@@ -36,15 +36,8 @@ Plugin 'kien/ctrlp.vim.git'
     endif
     nnoremap <leader>p :CtrlPTag<CR>
 
-Plugin 'majutsushi/tagbar.git'
-    nnoremap <silent> <leader>t :TagbarToggle<cr>
-    nnoremap <silent> <leader>r :TagbarOpenAutoClose<cr>
-
 Plugin 'rking/ag.vim.git'
     let g:ag_prg="ag --vimgrep"
-
-Plugin 'scrooloose/nerdtree.git'
-    nnoremap <leader>f :NERDTreeToggle<CR>
 
 Plugin 'scrooloose/syntastic.git'
     let g:syntastic_python_checkers = ["python", "pyflakes", "pep8"]
@@ -93,9 +86,6 @@ set backspace=2
 
 " python specific syntax setting
 let python_highlight_all = 1
-
-" autocommand for closetag.vim
-autocmd FileType html,xml,xsl,ant source ~/.vim/scripts/closetag.vim
 
 " colorscheme settings
 set background=dark
