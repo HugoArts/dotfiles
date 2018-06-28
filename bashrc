@@ -139,10 +139,6 @@ shopt -s histappend
 shopt -s cmdhist
 shopt -s checkwinsize
 
-#init_virtualenv `which python`
-init_virtualenv `which python3`
-alias mkvirtualenv="mkvirtualenv --python=/usr/local/bin/python3"
-alias mkproject="mkproject --python=/usr/local/bin/python3"
 
 # some ls aliases
 if [ `uname -s` != "Darwin" ]; then
@@ -162,11 +158,20 @@ if [ `uname -s` != "Darwin" ]; then
 fi
 
 if [ `uname -s` = "Darwin" ]; then
-    export PATH="$PATH:/Applications/Postgres.app/Contents/Versions/9.4/bin:/opt/chefdk/bin"
+    if [[ $ITERM_PROFILE = "light" ]]; then
+        export BACKGROUND="light"
+    else
+        export BACKGROUND="dark"
+    fi
+    source "$HOME/hugo/dotfiles/base16-default.$BACKGROUND.sh"
+
+    export PATH="/usr/local/opt/coreutils/libexec/gnubin:/usr/local/bin:$PATH"
     export LC_ALL=en_US.UTF-8
     export LANG=en_US.UTF-8
+    alias ls='ls --color=auto --group-directories-first'
     alias ag="echo use rg!!!"
-    source "$HOME/dotfiles/base16-default.dark.sh"
+    alias vim="/usr/local/Cellar/vim/8.0.1050/bin/vim"
+    source "`brew --prefix`/etc/bash_completion.d/git-completion.bash"
 fi
 
 alias vi='vim'

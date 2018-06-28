@@ -1,13 +1,27 @@
 [user]
     name = Hugo Arts
-    email = hugo@sushibowl.me
+    email = hugo@stamkracht.com
 
 [core]
     editor = vim
     excludesfile = ~/.gitignore
+    pager = /usr/local/opt/git/share/git-core/contrib/diff-highlight/diff-highlight | less -r
 
 [color]
     ui = true
+[color.diff]
+    meta=yellow
+    frag=magenta bold
+    commit=yellow bold
+    old=red bold
+    new=green bold
+    whitespace=red reverse
+[color.diff-highlight]
+    oldNormal=red bold
+    oldHighlight=red bold 52
+    newNormal=green bold
+    newHighlight=green bold 22
+
 [push]
     default = matching
 [alias]
