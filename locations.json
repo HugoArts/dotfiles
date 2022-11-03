@@ -1,0 +1,5 @@
+{
+    "bashrc": "{HOME}/.bashrc",
+    "config": "{HOME}/.config",
+    "bin": "{HOME}/.local/share/bin"
+}

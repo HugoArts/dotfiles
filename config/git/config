@@ -1,0 +1,16 @@
+[user]
+    name = Hugo Arts
+    email = hugo.arts@kpn.com
+
+[core]
+    editor = vim
+    excludesfile = ~/.config/git/ignore
+    pager = $HOMEBREW_PREFIX/share/git-core/contrib/diff-highlight/diff-highlight | less -R
+
+[alias]
+    graph = log --graph --branches --decorate
+    cached = diff --cached
+    s = status --short
+
+[diff]
+    compactionHeuristic = true

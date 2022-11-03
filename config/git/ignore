@@ -9,3 +9,6 @@ __pycache__/*
 
 # Mac OS bullshit
 .DS_Store
+
+# nvm
+.nvmrc

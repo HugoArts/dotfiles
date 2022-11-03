@@ -1,2 +1,5 @@
-vim/.netrwhist
-vim/bundle/*
+# nvim creates this on the fly so we don't need it here
+config/nvim/plugin/packer_compiled.lua
+
+# this one can contain auth info which we don't want in git
+npmrc

@@ -1,0 +1,29 @@
+{
+  "$schema" : "https:\/\/app.linearmouse.org\/schema\/0.7.4",
+  "schemes" : [
+    {
+      "pointer" : {
+        "acceleration" : 0,
+        "speed" : 0.642,
+        "disableAcceleration" : true
+      },
+      "if" : {
+        "device" : {
+          "productName" : "Mionix Castor",
+          "serialNumber" : "STM32",
+          "productID" : "0x1316",
+          "category" : "mouse",
+          "vendorID" : "0x22d4"
+        }
+      },
+      "scrolling" : {
+        "reverse" : {
+          "vertical" : true
+        },
+        "distance" : {
+          "vertical" : "auto"
+        }
+      }
+    }
+  ]
+}
