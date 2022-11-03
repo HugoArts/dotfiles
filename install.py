@@ -38,6 +38,9 @@ def main(locations: dict[str, str], args):
     for src, dst in location_paths.items():
         make_symlink(src, dst)
 
+    if not any(BACKUP_DIR.iterdir()):
+        BACKUP_DIR.rmdir()
+
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
