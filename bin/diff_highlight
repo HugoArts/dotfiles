@@ -1,0 +1,8 @@
+#!/usr/bin/bash
+
+if type brew &>/dev/null
+then
+    exec $HOMEBREW_PREFIX/share/git-core/contrib/diff-highlight/diff-highlight "$@"
+else
+    exec perl /usr/share/doc/git/contrib/diff-highlight/diff-highlight "$@"
+fi

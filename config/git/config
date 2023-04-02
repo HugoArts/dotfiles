@@ -5,7 +5,7 @@
 [core]
     editor = vim
     excludesfile = ~/.config/git/ignore
-    pager = $HOMEBREW_PREFIX/share/git-core/contrib/diff-highlight/diff-highlight | less -R
+    pager = diff_highlight | less -R
 
 [alias]
     graph = log --graph --branches --decorate
