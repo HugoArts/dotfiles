@@ -20,7 +20,7 @@ init_homebrew() {
     # put coreutils in the path
     export PATH="/opt/homebrew/opt/coreutils/libexec/gnubin:$PATH"
 
-	# add bash completions from homebrew
+    # add bash completions from homebrew
     if type brew &>/dev/null
     then
       HOMEBREW_PREFIX="$(brew --prefix)"
@@ -45,9 +45,11 @@ init_nvm() {
     [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 }
 
-init_homebrew
-init_pyenv
-init_nvm
+if [[ $(uname -s) = "Darwin" ]]; then
+    init_homebrew
+    init_pyenv
+    init_nvm
+fi
 
 # history options
 export HISTCONTROL=ignoredups
