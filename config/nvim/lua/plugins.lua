@@ -156,7 +156,7 @@ return require("packer").startup(function(use)
         requires = {"nvim-tree/nvim-web-devicons"},
         config = function()
             require("bufferline").setup({
-                icons=true,
+                icons = { filetype = { enabled = true } },
             })
         end,
     }
