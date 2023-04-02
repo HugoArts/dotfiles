@@ -36,7 +36,10 @@ def git_showbranch():
     if branches.returncode != 0:
         return ""
     else:
-        branch = next(b for b in branches.stdout.split('\n') if b.startswith('*'))
+        try:
+            branch = next(b for b in branches.stdout.split('\n') if b.startswith('*'))
+        except StopIteration:
+            return ""
         return branch[2:].strip()
 
 
