@@ -1,9 +1,9 @@
 
 #: Fonts
-font_family      Source Code Pro Medium
-bold_font        Source Code Pro Bold
-italic_font      Source Code Pro Medium Italic
-bold_italic_font Source Code Pro Bold Italic
+font_family      Fira Code Retina
+bold_font        Fira Code Bold
+italic_font      auto
+bold_italic_font auto
 
 font_size 11.5
 
@@ -48,7 +48,7 @@ tab_bar_margin_height 5.0 5.0
 tab_bar_style powerline
 
 tab_activity_symbol !
-tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{fmt.bold}{fmt.fg.magenta}{index}{fmt.fg.tab}: {fmt.nobold}{title} {fmt.bold}({layout_name[:3]})"
+tab_title_template "{fmt.fg.red}{bell_symbol}{activity_symbol}{fmt.fg.tab}{fmt.bold}{fmt.fg.red}{index}{fmt.fg.tab}: {fmt.nobold}{title} {fmt.bold}({layout_name[:3]})"
 
 
 #: Shell integration
@@ -95,6 +95,6 @@ map ctrl+o>shift+p move_tab_backward
 
 
 # BEGIN_KITTY_THEME
-# Sonokai-andromeda
+# Catppuccin Kitty Macchiato
 include current-theme.conf
 # END_KITTY_THEME
