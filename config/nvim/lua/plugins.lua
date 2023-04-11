@@ -14,7 +14,6 @@ vim.cmd([[
 return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
-    use "sainnhe/sonokai"
     use "catppuccin/nvim"
     use "nvim-tree/nvim-web-devicons"
     use "williamboman/mason.nvim"
@@ -83,6 +82,9 @@ return require("packer").startup(function(use)
             lspconf.tsserver.setup {
                 on_attach = on_attach,
             }
+            lspconf.eslint.setup {
+                on_attach = on_attach,
+            }
 
             lspconf.cssls.setup {
                 on_attach = on_attach,
@@ -94,7 +96,10 @@ return require("packer").startup(function(use)
         "kosayoda/nvim-lightbulb",
         requires = "antoinemadec/FixCursorHold.nvim",
         config = function()
-            require("nvim-lightbulb").setup({autocmd = {enabled = true}})
+            require("nvim-lightbulb").setup({
+                sign = {priority = 100},
+                autocmd = {enabled = true}
+            })
         end,
     }
 

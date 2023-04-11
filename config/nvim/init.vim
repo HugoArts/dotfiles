@@ -4,7 +4,7 @@ set hidden
 set background="dark"
 set termguicolors
 
-set inccommand="split"
+set inccommand=nosplit
 
 set ignorecase
 set smartcase
@@ -13,7 +13,7 @@ set smartcase
 set tabstop=4
 set shiftwidth=4
 set expandtab
-autocmd FileType javascript,typescript,jsx,tsx,html setlocal shiftwidth=2 tabstop=2
+"autocmd FileType javascript,typescript,jsx,tsx,html setlocal shiftwidth=2 tabstop=2
 
 " some line highlighting/number settings
 set number
@@ -34,15 +34,16 @@ let mapleader=","
 
 lua require('plugins')
 
-let g:sonokai_style = 'andromeda'
-let g:sonokai_better_performance = 1
-colorscheme catppuccin-macchiato
+colorscheme catppuccin-mocha
 
 " tab commands switch buffers
 nnoremap gt <Cmd>BufferNext<cr>
 nnoremap gT <Cmd>BufferPrevious<cr>
 nnoremap <leader>t <C-^>
 nnoremap <leader>q <Cmd>BufferPick<cr>
+
+" omnifunc more easily accessible
+inoremap <C-j> <C-X><C-O>
 
 " jump back
 nnoremap <leader>b <C-O>
