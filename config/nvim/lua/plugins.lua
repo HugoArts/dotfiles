@@ -30,7 +30,7 @@ return require("packer").startup(function(use)
             telescope.load_extension("fzf")
 
             local builtin = require("telescope.builtin")
-            opts = { noremap=true, silent=true, buffer=bufnr }
+            local opts = { noremap=true, silent=true, buffer=bufnr }
 
             vim.keymap.set("n", "<leader>ff", builtin.find_files, opts)
             vim.keymap.set("n", "<leader>fg", builtin.live_grep, opts)
@@ -39,6 +39,39 @@ return require("packer").startup(function(use)
             vim.keymap.set("n", "<leader>fi", builtin.lsp_incoming_calls, opts)
             vim.keymap.set("n", "<leader>fo", builtin.lsp_outgoing_calls, opts)
         end
+    }
+
+    use {
+        "nvim-lualine/lualine.nvim",
+        requires = {"nvim-tree/nvim-web-devicons", opt=true},
+        config = function()
+            local gitstatus = function()
+                local signs = vim.b.gitsigns_status_dict
+                if not signs then
+                    return nil
+                end
+                return {added = signs.added, modified = signs.changed, removed = signs.removed}
+            end
+            require("lualine").setup {
+                sections = {
+                    lualine_b = {
+                        "branch",
+                        {"diff", source = gitstatus},
+                        "diagnostics",
+                    }
+                }
+            }
+        end,
+    }
+
+    use {
+        "romgrk/barbar.nvim",
+        requires = {"nvim-tree/nvim-web-devicons"},
+        config = function()
+            require("bufferline").setup({
+                icons = { filetype = { enabled = true } },
+            })
+        end,
     }
 
     use {
@@ -92,24 +125,6 @@ return require("packer").startup(function(use)
         end
     }
 
-    use {
-        "kosayoda/nvim-lightbulb",
-        requires = "antoinemadec/FixCursorHold.nvim",
-        config = function()
-            require("nvim-lightbulb").setup({
-                sign = {priority = 100},
-                autocmd = {enabled = true}
-            })
-        end,
-    }
-
-    use {
-        "smjonas/inc-rename.nvim",
-        config = function()
-            require("inc_rename").setup()
-        end,
-    }
-
     use({ "yioneko/nvim-yati", tag = "*", requires = "nvim-treesitter/nvim-treesitter" })
     use {
         "nvim-treesitter/nvim-treesitter",
@@ -126,6 +141,39 @@ return require("packer").startup(function(use)
     }
 
     use {
+        "nvim-neotest/neotest",
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "antoinemadec/FixCursorHold.nvim",
+            -- adapters
+            "nvim-neotest/neotest-python",
+            "nvim-neotest/neotest-jest",
+        },
+        config = function()
+            local neotest = require("neotest")
+
+            neotest.setup({
+                adapters = {
+                    require("neotest-python"),
+                    require("neotest-jest"),
+                },
+                output = { open_on_run = false },
+                quickfix = { open = false },
+            })
+
+            local opts = { noremap=true, silent=true }
+            local run_all_file = function() neotest.run.run(vim.fn.expand("%")) end
+            vim.keymap.set("n", "<leader>tt", neotest.run.run, opts)
+            vim.keymap.set("n", "<leader>tf", run_all_file, opts)
+            vim.keymap.set("n", "<leader>tn", function() neotest.jump.next({status="failed"}) end, opts)
+            vim.keymap.set("n", "<leader>tp", function() neotest.jump.prev({status="failed"}) end, opts)
+            vim.keymap.set("n", "<leader>to", function() neotest.output.open({enter=true}) end, opts)
+            vim.keymap.set("n", "<leader>ts", neotest.summary.toggle, opts)
+        end,
+    }
+
+    use {
         "kylechui/nvim-surround",
         tag = "*",
         config = function()
@@ -134,35 +182,20 @@ return require("packer").startup(function(use)
     }
 
     use {
-        "nvim-lualine/lualine.nvim",
-        requires = {"nvim-tree/nvim-web-devicons", opt=true},
+        "kosayoda/nvim-lightbulb",
+        requires = "antoinemadec/FixCursorHold.nvim",
         config = function()
-            local gitstatus = function()
-                local signs = vim.b.gitsigns_status_dict
-                if not signs then
-                    return nil
-                end
-                return {added = signs.added, modified = signs.changed, removed = signs.removed}
-            end
-            require("lualine").setup {
-                sections = {
-                    lualine_b = {
-                        "branch",
-                        {"diff", source = gitstatus},
-                        "diagnostics",
-                    }
-                }
-            }
+            require("nvim-lightbulb").setup({
+                sign = {priority = 100},
+                autocmd = {enabled = true}
+            })
         end,
     }
 
     use {
-        "romgrk/barbar.nvim",
-        requires = {"nvim-tree/nvim-web-devicons"},
+        "smjonas/inc-rename.nvim",
         config = function()
-            require("bufferline").setup({
-                icons = { filetype = { enabled = true } },
-            })
+            require("inc_rename").setup()
         end,
     }
 
