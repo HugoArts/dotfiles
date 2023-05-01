@@ -10,6 +10,9 @@ export PYTHONSTARTUP="$XDG_CONFIG_HOME/pythonstartup.py"
 export PYENV_ROOT="$XDG_DATA_HOME/pyenv"
 export NVM_DIR="$XDG_DATA_HOME/nvm"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc"
+export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
+export CARGO_HOME="$XDG_DATA_HOME/cargo"
+
 export HISTFILE="$XDG_STATE_HOME/bash_history"
 export LESSHISTFILE="$XDG_STATE_HOME/lesshst"
 
@@ -41,6 +44,12 @@ init_pyenv() {
     eval "$(pyenv init -)"
 }
 
+init_cargo() {
+    if [[ -e $CARGO_HOME ]]; then
+        source "$CARGO_HOME/env"
+    fi
+}
+
 init_nvm() {
     [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
 }
@@ -50,6 +59,8 @@ if [[ $(uname -s) = "Darwin" ]]; then
     init_pyenv
     init_nvm
 fi
+
+init_cargo
 
 # history options
 export HISTCONTROL=ignoredups
