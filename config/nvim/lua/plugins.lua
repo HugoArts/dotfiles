@@ -156,7 +156,10 @@ return require("packer").startup(function(use)
             neotest.setup({
                 adapters = {
                     require("neotest-python"),
-                    require("neotest-jest"),
+                    require("neotest-jest")({
+                        jestCommand = "npm test --",
+                        env = { CI = true },
+                    }),
                 },
                 output = { open_on_run = false },
                 quickfix = { open = false },
