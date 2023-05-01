@@ -40,8 +40,10 @@ init_homebrew() {
 }
 
 init_pyenv() {
-    command -v pyenv >/dev/null || export PATH="$PYENV_ROOT/bin:$PATH"
-    eval "$(pyenv init -)"
+    if command -v pyenv >/dev/null; then
+        export PATH="$PYENV_ROOT/bin:$PATH"
+        eval "$(pyenv init -)"
+    fi
 }
 
 init_cargo() {
@@ -51,15 +53,15 @@ init_cargo() {
 }
 
 init_nvm() {
-    [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"
+    [ -s "$(brew --prefix nvm)/nvm.sh" ] && source "$(brew --prefix nvm)/nvm.sh"
 }
 
 if [[ $(uname -s) = "Darwin" ]]; then
     init_homebrew
-    init_pyenv
     init_nvm
 fi
 
+init_pyenv
 init_cargo
 
 # history options
