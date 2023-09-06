@@ -108,6 +108,10 @@ return require("packer").startup(function(use)
                         pycodestyle = { enabled=false },
                         pyflakes = { enabled=false },
                         flake8 = { enabled=true },
+
+                        ruff = { enabled=false },
+                        black = { enabled=true },
+                        mypy = { enabled=true },
                     },
                 }}
             }
