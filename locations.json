@@ -1,5 +1,5 @@
 {
     "bashrc": "{HOME}/.bashrc",
     "config": "{HOME}/.config",
-    "bin": "{HOME}/.local/share/bin"
+    "bin": "{HOME}/.local/bin"
 }

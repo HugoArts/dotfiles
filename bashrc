@@ -57,6 +57,7 @@ init_nvm() {
 }
 
 if [[ $(uname -s) = "Darwin" ]]; then
+    export PATH="$PATH:/usr/local/bin"
     init_homebrew
     init_nvm
 fi
@@ -75,7 +76,7 @@ shopt -s cmdhist
 shopt -s checkwinsize
 
 # path and prompt
-export PATH="$XDG_DATA_HOME/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export PS1='$(prompt.py "$?" "\u@\h" "\W")'
 
 # some aliases
