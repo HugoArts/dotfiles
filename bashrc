@@ -12,6 +12,7 @@ export NVM_DIR="$XDG_DATA_HOME/nvm"
 export NPM_CONFIG_USERCONFIG="$XDG_CONFIG_HOME/npmrc"
 export RUSTUP_HOME="$XDG_DATA_HOME/rustup"
 export CARGO_HOME="$XDG_DATA_HOME/cargo"
+export KUBECONFIG="$XDG_CONFIG_HOME/kube/config"
 
 export HISTFILE="$XDG_STATE_HOME/bash_history"
 export LESSHISTFILE="$XDG_STATE_HOME/lesshst"
