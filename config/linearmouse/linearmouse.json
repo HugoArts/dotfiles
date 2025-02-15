@@ -1,29 +1,47 @@
 {
-  "$schema" : "https:\/\/app.linearmouse.org\/schema\/0.7.4",
   "schemes" : [
     {
       "pointer" : {
-        "acceleration" : 0,
-        "speed" : 0.642,
-        "disableAcceleration" : true
+        "disableAcceleration" : true,
+        "acceleration" : 1,
+        "speed" : 0.642
       },
       "if" : {
         "device" : {
-          "productName" : "Mionix Castor",
-          "serialNumber" : "STM32",
           "productID" : "0x1316",
+          "vendorID" : "0x22d4",
+          "serialNumber" : "STM32",
           "category" : "mouse",
-          "vendorID" : "0x22d4"
+          "productName" : "Mionix Castor"
         }
+      },
+      "scrolling" : {
+        "distance" : {
+          "vertical" : "auto"
+        },
+        "reverse" : {
+          "vertical" : true
+        }
+      }
+    },
+    {
+      "pointer" : {
+        "speed" : 0.4014
       },
       "scrolling" : {
         "reverse" : {
           "vertical" : true
-        },
-        "distance" : {
-          "vertical" : "auto"
+        }
+      },
+      "if" : {
+        "device" : {
+          "productName" : "MIONIX CASTOR PRO Gaming Mouse",
+          "vendorID" : "0x22d4",
+          "category" : "mouse",
+          "productID" : "0x1329"
         }
       }
     }
-  ]
+  ],
+  "$schema" : "https:\/\/schema.linearmouse.app\/0.9.5"
 }
